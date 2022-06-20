@@ -147,7 +147,7 @@ def resize_gif_and_png(data, save_as, resize_to=None):
 
 def main():
     # test gif
-    url_gif = "https://metararity.s3.ca-central-1.amazonaws.com/rarity/solana/flippydogs/profile.webp"
+    url_gif = "https://danielk.tech/user/pages/01.home/angular-how-to-improve-bundle-size/trim%20the%20imports.gif"
     data_gif = get_data_from_url(url_gif)
     resize_gif_and_png(data_gif, "1-out", (100,100))
     # test png
