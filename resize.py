@@ -2,6 +2,9 @@ from PIL import Image
 import urllib.request
 import io
 import time
+import argparse
+
+from numpy import number
 
 g_user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
 g_fetch_data_retry_count = 3
@@ -148,14 +151,25 @@ def resize_gif_and_png(data, save_as, resize_to=None):
 def main():
     # test gif
     url_gif = "https://danielk.tech/user/pages/01.home/angular-how-to-improve-bundle-size/trim%20the%20imports.gif"
-    data_gif = get_data_from_url(url_gif)
-    resize_gif_and_png(data_gif, "1-out", (100,100))
+    resize_from_url(url_gif, (100,100))
     # test png
     url_png = "https://metararity.s3.ca-central-1.amazonaws.com/rarity/solana/GXUdyWkQXiusXapVEGwFpqXoQsGQcEDVztuoncSdyYta_300.webp"
-    data_png = get_data_from_url(url_png)
-    resize_gif_and_png(data_png, "1-out", (100,100))
+    resize_from_url(url_png, (100,100))
 
+def resize_from_url(url, size):
+    data_gif = get_data_from_url(url)
+    resize_gif_and_png(data_gif, "1-out", size)
+    
 
 
 if __name__ == "__main__":
-    main()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("url", type=str, help="image url")
+    ap.add_argument("w", help="new image width")
+    ap.add_argument("h",  help="new image height")
+    args = vars(ap.parse_args())
+    url = args.get('url')
+    w = int(args.get('w'))
+    h = int(args.get('h'))
+
+    resize_from_url(url, (w,h))
