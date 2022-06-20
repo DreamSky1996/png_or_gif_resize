@@ -148,7 +148,6 @@ def resize_gif_and_png(data, save_as, resize_to=None):
 def main():
     # test gif
     url_gif = "https://metararity.s3.ca-central-1.amazonaws.com/rarity/solana/flippydogs/profile.webp"
-    # url_gif = "https://galxrpg4sfphun5txisywstqpy4pcmrb2zee63dnhncde6n2.arweave.net/MBd4vNyRXno3s7oli0pwfjjx_MiHWSE9sbT-tEMnm6E?ext=gif"
     data_gif = get_data_from_url(url_gif)
     resize_gif_and_png(data_gif, "1-out", (100,100))
     # test png
